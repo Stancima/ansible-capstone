@@ -1,0 +1,24 @@
+---
+- name: Ensure temp directory exists (Windows)
+  ansible.windows.win_file:
+    path: "{{ chef_tmp_dir_windows }}"
+    state: directory
+
+- name: Download Chef Client MSI (Windows)
+  ansible.windows.win_get_url:
+    url: "{{ chef_client_windows_msi_url }}"
+    dest: "{{ chef_tmp_dir_windows }}\\chef-client-{{ chef_client_version }}.msi"
+
+- name: Install Chef Client (Windows)
+  ansible.windows.win_package:
+    path: "{{ chef_tmp_dir_windows }}\\chef-client-{{ chef_client_version }}.msi"
+    state: present
+
+- name: Verify chef-client version (Windows)
+  ansible.windows.win_command: '"C:\opscode\chef\bin\chef-client.bat" -v'
+  register: chef_version_out
+  changed_when: false
+
+- name: Show chef-client version (Windows)
+  ansible.builtin.debug:
+    msg: "{{ chef_version_out.stdout }}"

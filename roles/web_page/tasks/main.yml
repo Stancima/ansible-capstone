@@ -1,0 +1,24 @@
+---
+- name: Install web server package
+  ansible.builtin.package:
+    name: "{{ web_server_package }}"
+    state: present
+
+- name: Ensure web root exists
+  ansible.builtin.file:
+    path: "{{ web_root }}"
+    state: directory
+    mode: "0755"
+
+- name: Deploy homepage
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "{{ web_root }}/{{ homepage_filename }}"
+    mode: "0644"
+  notify: restart nginx
+
+- name: Ensure nginx is enabled and running
+  ansible.builtin.service:
+    name: nginx
+    enabled: true
+    state: started

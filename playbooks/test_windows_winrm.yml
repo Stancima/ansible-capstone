@@ -1,0 +1,5 @@
+---
+- hosts: windows_nodes
+  gather_facts: false
+  tasks:
+    - win_ping:

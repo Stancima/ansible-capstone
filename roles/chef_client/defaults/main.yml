@@ -1,0 +1,15 @@
+---
+# Pin a version for repeatable demos; change as needed
+chef_client_version: "18.4.12"
+
+# Linux omnibus install script
+chef_omnitruck_install_script_url: "https://omnitruck.chef.io/install.sh"
+
+# Windows MSI URL pattern (example). Update if your org uses an internal mirror.
+# You can also override this per environment/group in AAP inventory vars.
+chef_client_windows_msi_url: "https://packages.chef.io/files/stable/chef/{{ chef_client_version }}/windows/2016/chef-client-{{ chef_client_version }}-1-x64.msi"
+
+# Where we stage installers
+chef_tmp_dir_linux: "/tmp"
+chef_tmp_dir_windows: "C:\\temp"
+

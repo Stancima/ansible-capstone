@@ -1,0 +1,7 @@
+---
+- name: Install Chef Client on Linux and Windows nodes
+  hosts: all
+  gather_facts: true
+
+  roles:
+    - role: chef_client

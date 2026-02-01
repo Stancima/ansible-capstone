@@ -1,0 +1,8 @@
+---
+- name: Deploy capstone homepage on Linux node
+  hosts: linux_nodes
+  gather_facts: true
+  become: true
+
+  roles:
+    - role: web_page

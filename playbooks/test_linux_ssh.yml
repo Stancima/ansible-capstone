@@ -1,0 +1,6 @@
+---
+- hosts: linux_nodes
+  gather_facts: false
+  tasks:
+    - name: Verify Ansible can reach Linux hosts over SSH
+      ansible.builtin.ping:
