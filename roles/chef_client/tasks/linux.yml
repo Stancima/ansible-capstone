@@ -1,28 +1,32 @@
 ---
-- name: Check if chef-client already exists
+- name: Check if chef-client already exists (Linux)
+  become: true
   ansible.builtin.stat:
     path: /opt/chef/bin/chef-client
   register: chef_client_bin
 
-- name: Download Chef Omnitruck install script
+- name: Download Chef Omnitruck install script (Linux)
+  become: true
   ansible.builtin.get_url:
     url: "{{ chef_omnitruck_install_script_url }}"
     dest: "{{ chef_tmp_dir_linux }}/chef_install.sh"
-    mode: "0755"
+    mode: '0755'
   when: not chef_client_bin.stat.exists
 
 - name: Install Chef Client (Linux) via Omnitruck
+  become: true
   ansible.builtin.command: >
     bash {{ chef_tmp_dir_linux }}/chef_install.sh -v {{ chef_client_version }}
   args:
     creates: /opt/chef/bin/chef-client
   when: not chef_client_bin.stat.exists
 
-- name: Verify chef-client version
+- name: Verify chef-client version (Linux)
+  become: true
   ansible.builtin.command: /opt/chef/bin/chef-client -v
   register: chef_version_out
   changed_when: false
 
-- name: Show chef-client version
+- name: Show chef-client version (Linux)
   ansible.builtin.debug:
     msg: "{{ chef_version_out.stdout }}"

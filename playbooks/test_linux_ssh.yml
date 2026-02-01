@@ -1,5 +1,6 @@
 ---
 - hosts: linux_nodes
+  become: true
   gather_facts: false
   tasks:
     - name: Verify Ansible can reach Linux hosts over SSH
