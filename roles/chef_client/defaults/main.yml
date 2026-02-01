@@ -11,5 +11,5 @@ chef_client_windows_msi_url: "https://packages.chef.io/files/stable/chef/{{ chef
 
 # Where we stage installers
 chef_tmp_dir_linux: "/tmp"
-chef_tmp_dir_windows: "C:\\temp"
+chef_tmp_dir_windows: "C:\\Temp"
 
