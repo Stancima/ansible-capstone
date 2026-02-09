@@ -3,4 +3,4 @@ web_server_package: nginx
 web_root: /usr/share/nginx/html
 homepage_filename: index.html
 
-homepage_message: "welcome to my ansible capstone --Stanley Ibe"
+homepage_message: "welcome to AAP demo ---by cimasync"
